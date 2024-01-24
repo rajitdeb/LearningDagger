@@ -1,5 +1,6 @@
 package com.rajit.learningdagger2.di
 
+import com.rajit.learningdagger2.domain.NotificationRepositoryModule
 import com.rajit.learningdagger2.domain.UserRegistrationService
 import dagger.Component
 
@@ -8,7 +9,7 @@ import dagger.Component
  * Basically, Consumer asks the component to provide the dependencies
  * And Consumer looks for the constructors and modules which it can provide
  */
-@Component
+@Component(modules = [NotificationRepositoryModule::class])
 interface UserRegistrationComponent {
 
     fun getUserRegistrationService(): UserRegistrationService

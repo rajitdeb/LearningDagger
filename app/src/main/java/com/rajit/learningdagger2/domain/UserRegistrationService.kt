@@ -8,18 +8,12 @@ import javax.inject.Inject
  */
 class UserRegistrationService @Inject constructor(
     private val userService: UserService,
-    private val emailService: EmailService
+    private val notificationService: NotificationService // UserRegistrationService doesn't need to know about the actual implementation
 ) {
-
-    /**
-     * This is field injection, but Dagger only supports public fields for Field Injection
-     */
-//    @Inject
-//    lateinit var emailService: EmailService
 
     fun registerUser(email: String, password: String) {
         userService.saveUserToDB(email, password)
-        emailService.sendWelcomeEmail(email)
+        notificationService.send(email, "no-reply@example.com", email)
     }
 
 }
